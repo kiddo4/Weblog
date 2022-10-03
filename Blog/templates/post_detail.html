@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load hitcount_tags %}
+{% load static %}
+
+{% block page_content %}
+<html>
+<head>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+  <title>{{ post.title }}</title>
+ 
+</head>
+ <body>
+     
+<h1 class=" mt-2 mb-3" id="desc-tit"><strong>{{ post.title }}</strong></h1>
+
+ <img src="{{ post.image.url }}" alt="image" height="40%" width="100%" class="img-bord">
+    
+<p>{% get_hit_count for post %}👁</p>
+      <p class="font-l">{{ post.Body|safe}}</p>
+  <div>
+  <h1 class=" mt-4 text-primary pop-post"><strong>Popular Posts</strong></h1>
+  {% for p in popular_posts %}
+  <h4>•{{p.title}}</h4>
+  {% endfor %}
+  </div>
+  </div>
+
+
+
+ </body>
+  
+</html>
+
+{% endblock %}

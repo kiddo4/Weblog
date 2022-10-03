@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block page_content %}
+{% load hitcount_tags %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Isgs-Blog | where it all begins😂</title>
+    
+  </head>
+  <body>
+<div class="main">
+<form action="{% url 'search_results' %}" method="get">
+  <!-- Actual search box -->
+
+  <!-- Another variation with a button -->
+  <div class="input-group">
+
+    <input name="q" type="text" class="form-control" placeholder="Search Posts">
+    <div class="input-group-append">
+      <button class="btn btn-primary" type="submit">
+        <i class="fa fa-search"></i>
+      </button>
+     
+    </div>
+  </div>
+ </form>
+</div>
+    {% for post in posts %}
+  
+        <div class="card mb-2">
+            <img class="card-img-top" src="{{ post.image.url }}">
+            <div class="card-body">
+                <h1 class="card-title"><a href="posts/{{ post.slug }}">{{ post.title }}</a></h1>
+<p>{% get_hit_count for post %}👁</p>
+   <a href="search/posts/{{ post.slug }}"
+                   class="btn btn-primary">
+                    View Post
+                </a>
+            </div>
+        </div>
+    
+    {% endfor %}
+  </body>
+</html>
+
+{% endblock %}
